@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Nito",
   "description": "Unlimited access to Medium posts",
-  "version": "0.1",
+  "version": "1.1",
   "icons": {
     "16": "cookie.png",
     "32": "cookie.png",
@@ -11,10 +11,11 @@
   },
   "permissions": [
     "tabs",
-    "cookies",
-    "scripting"
+    "cookies"
   ],
-  "host_permissions": ["*://medium.com/*"],
+  "host_permissions": [
+    "*://*/*"
+],
   "background": {
     "service_worker": "background.js"
   },
@@ -23,7 +24,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*/*"],
+      "matches": ["*://*/*"],
       "js": ["content.js"]
     }
   ]
