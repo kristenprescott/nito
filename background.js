@@ -1,29 +1,29 @@
-chrome.browserAction.onClicked.addListener(function (tab) {
+chrome.browserAction.onClicked.addListener((tab) => {
   chrome.tabs.sendMessage(
     tab.id,
     { message: "Hey send me the url" },
-    function (response) {
-      var storedUrl = response.url;
+    ((response) => {
+      let storedUrl = response.url;
       chrome.windows.create({ url: storedUrl, incognito: true });
-      chrome.windows.getAll({ populate: true }, function (window_list) {
-        //console.log(window_list)
+      chrome.windows.getAll({ populate: true }, ((window_list) => {
+        // console.log(window_list);
         for (let w of window_list) {
           if (w.incognito) {
-            chrome.cookies.getAllCookieStores(function (cs) {
+            chrome.cookies.getAllCookieStores((cs) => {
               console.log(cs);
               incognitoCs = cs[1].id;
               setTimeout(() => {
                 chrome.cookies.remove(
                   { storeId: incognitoCs, name: "uid", url: storedUrl },
-                  function (IncognitoCookies) {
+                  ((IncognitoCookies) => {
                     console.log("Cookie removed");
-                  }
-                );
-              }, 3000);
-            });
+                  })
+                )
+              }, 3000)
+            })
           }
         }
-      });
-    }
-  );
-});
+      }))
+    })
+  )
+})
