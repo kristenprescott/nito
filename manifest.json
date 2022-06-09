@@ -1,20 +1,26 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Nito",
   "description": "Unlimited access to Medium posts",
   "version": "0.1",
-
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+  "icons": {
+    "16": "cookie.png",
+    "32": "cookie.png",
+    "48": "cookie.png",
+    "128": "cookie.png"
   },
   "permissions": [
     "tabs",
     "cookies",
-    "https://medium.com/*",
-    "https://betterprogramming.pub/*"
+    "scripting"
   ],
-  "browser_action": { "default_icon": "cookie.png" },
+  "host_permissions": ["*://medium.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": "cookie.png"
+  },
   "content_scripts": [
     {
       "matches": ["https://*/*"],
