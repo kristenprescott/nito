@@ -1,4 +1,4 @@
-chrome.runtime.onInstalled.addListener((tab) => {
+chrome.action.onClicked.addListener((tab) => {
   chrome.tabs.sendMessage(
       tab.id,
       { message: "Hey send me the url" },
